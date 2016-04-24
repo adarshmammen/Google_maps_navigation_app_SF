@@ -13,3 +13,13 @@ OUTPUT:
 latlong.xml
 
 Which is an XML file that converted 2 input node numbers to a shortest path
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ALTERNATE
+
+open a terminal in this folder
+
+type:
+sh daemon.sh
+keep terminal open
+
+open OPEN_THIS on chrome
