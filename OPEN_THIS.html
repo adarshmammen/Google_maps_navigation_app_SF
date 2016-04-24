@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+var infowindow = null;
+var lk;
+var test1;
+var a1=0;
+var pos=[4];
+var i1=0;
+      function initMap()
+ {
+        var position = {lat: 36.740396, lng: -119.76845};
+		
+		   var bound1 = [{lat:41.994941,lng: -124.201041},
+				{lat:41.998271 ,lng: -123.720763},
+				{lat:41.995138,lng: -120.001044},
+				{lat:41.994492,lng: -119.999166},
+				{lat:38.999567,lng:  -120.000996},
+				{lat:34.994160,lng: -114.625374},
+				{lat:34.260345,lng:  -114.133285},
+				{lat:33.403114,lng: -114.721815},
+				{lat:32.810143,lng: -114.518965},
+				{lat:32.718751,lng: -114.719637},
+				{lat:32.534537,lng: -117.124312}];
+
+		var citymap ={ 
+				n1: {
+					    center: {lat: -122.546921, lng: 41.915726},	
+						population: 2714856
+
+	                 		},
+				losangeles: {
+         					 center: {lat: 34.052, lng: -118.243},
+         					 population: 7000000
+						},
+				n3: {
+					    center: {lat: -122.390503, lng: 41.988567},	
+					    population: 2714856
+
+	                 		},
+				n4: {
+					    center: {lat: -122.604172, lng: 42.012905},	
+                                            population: 2714856
+
+	                 		},
+				n5: {
+					    center: {lat: -119.453171, lng: 38.350842},	
+                                            population: 2714856
+
+	                 		},
+				n6: {
+					    center: {lat: -115.180771, lng: 34.066166},	
+                                           population: 2714856
+
+	                 		}
+                          };
+
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: position
+          
+        });
+
+        
+
+         infowindow = new google.maps.InfoWindow({
+          
+                                                });
+
+var flightPath = new google.maps.Polyline({
+    path: bound1,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 3
+  });
+
+		for (var city in citymap) {
+    // Add the circle for this city to the map.
+    var cityCircle = new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.45,
+      map: map,
+      center: citymap[city].center,
+      radius: Math.sqrt(citymap[city].population) * 1
+
+    });
+  }
+
+
+
+
+
+
+
+
+
+  flightPath.setMap(map);
+          google.maps.event.addListener(map, 'click', function(event) {
+a1=a1+1;
+             console.log(a1);
+	if(a1<3)
+{
+            
+          placeMarker(event.latLng);
+ }
+       });
+
+
+function placeMarker(position) { 
+
+    
+lk = position.lat();
+ test1 = position.lng();
+pos[i1]=lk;
+pos[i1+1]=test1;
+console.log(test1);
+console.log(lk);
+
+i1=i1+2;         
+
+
+if(a1==2)
+{
+    
+var hiddenElement = document.createElement('a');
+
+  hiddenElement.href = 'data:attachment/text,' + encodeURI(pos[0]) + encodeURI(" ") + encodeURI(pos[1])+ encodeURI(" ")+ encodeURI(pos[2])+encodeURI(" ")+encodeURI(pos[3]);
+   
+  hiddenElement.target = '_blank';
+  hiddenElement.download = 'myFile.txt';
+  hiddenElement.click();
+
+}
+
+  
+
+
+
+              
+var ContentString = "Latitude is  " + lk + " and the longitude is  " + position.lng() ;
+var markers = new google.maps.Marker(
+    { 
+     position: position,
+     map: map,
+     
+     });                      
+
+      google.maps.event.addListener(markers, 'click', function() {
+      infowindow.setContent(ContentString);
+      infowindow.open(map,markers);
+      });             
+    }    
+}
+
+    
+
+
+        
+      
+
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUvu_xy5HFdY7kI8lyRvX5wXr0fIxLfl0&callback=initMap">
+    </script>
+    <script>
+    
+    </script>
+  </body>
+</html>

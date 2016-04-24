@@ -1,0 +1,15 @@
+Open OPEN_THIS on chrome
+
+Click two points on the map
+
+save the file to this folder (where you found the README)
+
+open a terminal in this folder
+
+type: 
+sh run.sh
+
+OUTPUT:
+latlong.xml
+
+Which is an XML file that converted 2 input node numbers to a shortest path
