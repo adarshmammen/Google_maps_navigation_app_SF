@@ -1,6 +1,6 @@
 Open OPEN_THIS on chrome
 
-Click two points on the map
+Click one point on the map (SF)
 
 save the file to this folder (where you found the README)
 
@@ -10,9 +10,7 @@ type:
 sh run.sh
 
 OUTPUT:
-latlong.xml
-
-Which is an XML file that converted 2 input node numbers to a shortest path
+nearest nodes
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ALTERNATE
@@ -24,3 +22,9 @@ sh daemon.sh
 keep terminal open
 
 open OPEN_THIS on chrome
+
+
+*******
+You need to install apache for this to work
+daemon is functional on chrome only if you set a direct download to the folder
+
