@@ -57,21 +57,18 @@ int main()
       string testline2;
       vector<string> word2;
       char M = 'K';
-     
   
       ifstream Test ( "cal_cnode.txt" );
 
       if (!Test)
       {
-          cout << "There was an error opening the file1.\n";
+          cout << "There was an error opening the file.\n";
           return 0;
       }
 
       //store words in vector
-     
       while( Test>>testline )
               word.push_back(testline);
-           
 
 
       // multiples of 3 from 0 are index number +1 = lat +1 = long
@@ -92,8 +89,6 @@ int main()
       while( Test2>>testline2 )
             word2.push_back(testline2);
 
-
-
           //cout<<word2[1]<<"("<<1<<")"<<endl;
 
       // 37.67512527892127 -121.058349609375 36.58906837139909 -120.399169921875
@@ -102,12 +97,11 @@ int main()
       /*                                              */
       /*              Calculate the differences       */
       int j =0;
-
-      for (int i =0; i<word.size(); i++)
+      for (int i =1; i<=word.size(); i++)
       {
         // from start 
-        difference_start[j]=distance1(stod(word[i+2]),stod(word[i+1]),stod(word2[0]),stod(word2[1]),M);
-        //difference_end[j] =distance1(stod(word[i+1]),stod(word[i+2]),stod(word2[3]),stod(word2[2]),M);
+        difference_start[j]=distance1(stod(word[i+1]),stod(word[i+2]),stod(word2[1]),stod(word2[0]),M);
+        difference_end[j] =distance1(stod(word[i+1]),stod(word[i+2]),stod(word2[3]),stod(word2[2]),M);
         //printf("%f\n",difference_start[j] );
         //cout<<"\nstart "<<stod(word[i+1])<<" "<<stod(word[i+2])<<" "<<stod(word2[1])<<" "<<stod(word2[0]);
         //cout<<"\nend "<<stod(word[i+1])<<" "<<stod(word[i+2])<<" "<<stod(word2[3])<<" "<<stod(word2[2]);
@@ -117,13 +111,13 @@ int main()
         j = j+1;
         i = i+2;
       }
-printf("reached\n");
+
       /*                                              */
       /*              find the smallest value         */
       double smallest_start=10000,smallest_end=10000;
       int node_start,node_end;
 
-      for (int i =0;i<j;i++)
+      for (int i =1;i<=j;i++)
       {
           if(smallest_start > difference_start[i]){
             smallest_start = difference_start[i];
@@ -137,7 +131,7 @@ printf("reached\n");
             //printf("end%d\n", node_end);
           }
       }
-      printf("node:   %d\n", node_start);
+      printf("Start node:   %d\nEnd node:   %d\n", node_start,node_end);
 
 
     ofstream myfile3 ("nodes_start_end.txt");
@@ -145,8 +139,8 @@ printf("reached\n");
       {
         myfile3 << node_start;
         myfile3 << '\n';
-       // myfile3 << node_end;
-        //myfile3 << '\n';
+        myfile3 << node_end;
+        myfile3 << '\n';
         myfile3.close();
       }
       else cout << "Unable to open file";

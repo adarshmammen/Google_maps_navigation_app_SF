@@ -26,7 +26,7 @@ var a1=0;
 var pos=[4];
 var i1=0;
 var d;
-var PlanCoordinates11 = [];
+var flightPlanCoordinates1 = [];
 var GLatlng =[];
 
 	 function initMap()
@@ -112,9 +112,9 @@ if (window.XMLHttpRequest)
           
         //var point = new GLatLng(parseFloat(xmlcellLatitude.firstChild.data), parseFloat(xmlcellLongitude.firstChild.data));         
         PlanCoordinates11[i] = new google.maps.LatLng(xmlcellLatitude1.firstChild.data, xmlcellLongitude1.firstChild.data);
-     placeMarker(PlanCoordinates11[i]);
+     placeMarker(PlanCoordinates11[i])
 
-}
+
 
 			function placeMarker(position) 
 			{ 

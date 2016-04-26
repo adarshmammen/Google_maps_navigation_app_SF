@@ -3,6 +3,7 @@
 /************************************************************************/
 #include <time.h>
 #include <limits>
+#include <list>
 #include <set>
 #include <map>
 #include <queue>
@@ -12,46 +13,55 @@
 #include <iostream>
 #include <algorithm>
 #include <math.h>
+#include <cstdio>
+#include <iostream>
 #include "GraphElements.h"
 #include "Graph.h"
 #include "DijkstraShortestPathAlg.h"
 #include "YenTopKShortestPathsAlg.h"
 
+
 using namespace std;
-
-
-void testDijkstraGraph(int source, int dest)
-{
-	Graph* my_graph_pt = new Graph("data/cal_edges");
-	DijkstraShortestPathAlg shortest_path_alg(my_graph_pt);
-	BasePath* result =
-		shortest_path_alg.get_shortest_path(
-			my_graph_pt->get_vertex(source), my_graph_pt->get_vertex(dest));
-	result->PrintOut(cout);
-}
 
 void testYenAlg(int source, int dest, int k)
 {
-	//Graph my_graph("../data/test_6_2");
 	Graph my_graph("data/cal_edges");
 
 	YenTopKShortestPathsAlg yenAlg(my_graph, my_graph.get_vertex(source),
 		my_graph.get_vertex(dest));
 
-	for(int i = 0; i<k; i++){
-        yenAlg.next();//->PrintOut(cout);
+    freopen("output.txt","w",stdout);
+    for(int i = 0; i<k; i++){
+        yenAlg.next()->PrintOut(cout);
 	}
-
-// 	System.out.println("Result # :"+i);
-// 	System.out.println("Candidate # :"+yenAlg.get_cadidate_size());
-// 	System.out.println("All generated : "+yenAlg.get_generated_path_size());
-
 }
 
 int main()
 {
+
+  string testline;
+  vector<string> word;
+  ifstream Test ( "nodes_start_end.txt" );
+
+  if (!Test)
+  {
+      cout << "There was an error opening the file.\n";
+      return 0;
+  }
+  //store words in vector
+
+    while( Test>>testline ){ word.push_back(testline);}
+    int source = atoi(word[0].c_str());
+    int dest = atoi(word[1].c_str());
+    int k = 3;
+    testYenAlg(source, dest, k);
+
+    //freopen("output.txt","w",stdout);
+
+
+    /*
     int n = 21048;
-    int m=100;//how many calls to YenAlg to avg
+    int m=500;//how many calls to YenAlg to avg
     float times[m];
     float avg = 0;
     int k = 3;
@@ -64,7 +74,8 @@ int main()
         t2=clock();
         float diff ((float)t2-(float)t1);
         diff = diff/CLOCKS_PER_SEC;
-        cout<<i<<" YenAlg time from "<<source<<" to "<<dest<<" took "<<diff<<" seconds."<<endl;
+        //cout<<i<<" YenAlg time from "<<source<<" to "<<dest<<" took "<<diff<<" seconds."<<endl;
+        cout<<diff<<endl;
         times[i] = diff;
         avg += diff/m;
     }
@@ -85,5 +96,5 @@ int main()
     cout<<"min time: "<<min<<endl;
     cout<<"max time: "<<max<<endl;
     cout<<"std time: "<<sd<<endl;
-    cout<<"Coefficient of Variation: "<<cv<<endl;
+    cout<<"Coefficient of Variation: "<<cv<<endl;*/
 }

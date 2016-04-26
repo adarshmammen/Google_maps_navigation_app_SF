@@ -13,6 +13,7 @@
 
 #include <string>
 #include <iostream>
+#include <cstdio>
 
 template<class T>
 class WeightGreater
@@ -148,12 +149,14 @@ public:
 	// display the content
 	void PrintOut(std::ostream& out_stream) const
 	{
-		out_stream << "Cost: " << m_dWeight << " Length: " << m_vtVertexList.size() << std::endl;
+		//out_stream << "Cost: " << m_dWeight << " Length: " << m_vtVertexList.size() << std::endl;
+		//out_stream  << m_dWeight << ", " << m_vtVertexList.size()<< ", ";
+
 		for(std::vector<BaseVertex*>::const_iterator pos=m_vtVertexList.begin(); pos!=m_vtVertexList.end();++pos)
 		{
 			(*pos)->PrintOut(out_stream);
-			out_stream << "->";
+			out_stream << ",";
 		}
-		out_stream << std::endl <<  "*********************************************" << std::endl;
+		out_stream << std::endl;// <<  "*********************************************" << std::endl;
 	}
 };
