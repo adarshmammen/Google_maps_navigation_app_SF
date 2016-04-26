@@ -14,7 +14,7 @@ python createXML.py
 cp latlong.xml /var/www/html/.
 
 #cp spath.html /var/www/html/.
-rm myFile.txt nodes_start_end.txt neigh_node.txt latlong.xml 
+rm myFile.txt #nodes_start_end.txt neigh_node.txt latlong.xml 
 #rm spath.html
 
 #sudo chmod 777 /var/www/html/spath.html
